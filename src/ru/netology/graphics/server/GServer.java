@@ -4,9 +4,10 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import ru.netology.graphics.image.TextGraphicsConverter;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
-import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -21,7 +22,8 @@ public class GServer {
 
     public GServer(TextGraphicsConverter converter) throws Exception {
         if (converter == null) {
-            throw new IllegalArgumentException("Серверу нужно передать в конструктор объект-конвертер, а было передано null.");
+            System.err.println("Серверу нужно передать в конструктор объект-конвертер, а было передано null.");
+            return;
         }
         this.converter = converter;
         this.converter.setMaxHeight(300);
